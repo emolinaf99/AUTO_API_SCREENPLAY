@@ -1,50 +1,54 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# AUTO_API_SCREENPLAY Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-First
+Toda funcionalidad comienza con un spec aprobado en `.specify/specs/`.
+No se escribe código de producción sin spec + plan aprobados.
+El spec define los escenarios sobre el contrato REST real; no se inventan endpoints.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Java + Serenity BDD + Serenity Rest
+Stack único: Java 21, Serenity BDD 4.2.9, Serenity Rest (RestAssured integrado), JUnit 4, Cucumber.
+`CucumberWithSerenity` es el runner obligatorio.
+`serenity-gradle-plugin 4.2.9` genera el reporte agregado.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Screenplay + Serenity Rest (NON-NEGOTIABLE)
+Patrón obligatorio: Actors, Tasks, Questions con responsabilidad única (SRP).
+Cada verbo HTTP es una Task independiente: `PostEvent`, `GetEvent`, `UpdateEvent`, `DeleteEvent`.
+`CallAnApi` es la habilidad del Actor para llamadas REST.
+`Post.to()`, `Get.resource()`, `Put.to()`, `Delete.from()` son las acciones estándar.
+Questions validan código de estado y body de respuesta.
+Sin `RestAssured` directo en Steps; toda lógica REST reside en Tasks/Questions.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Código Limpio
+Sin comentarios en código, sin lógica de negocio en el runner.
+URLs del backend en `serenity.conf`, no en Java.
+Nomenclatura semántica en todos los artefactos.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Flujo CRUD Completo
+El escenario único DEBE ejercer los 4 verbos en secuencia: POST → GET → PUT → DELETE.
+El ID generado por POST se propaga automáticamente entre Tasks vía respuesta anterior.
+Cada paso verifica el código de respuesta HTTP esperado.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Constraints Técnicos
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- Target API: `http://localhost:8002` (CrudService — .NET)
+- Endpoints: `/api/events` (POST, GET-list), `/api/events/{id}` (GET, PUT, DELETE)
+- Códigos esperados: POST→201, GET→200, PUT→200, DELETE→204
+- Sin autenticación: la API no requiere tokens
+- `./gradlew test aggregate` es el comando de ejecución
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Quality Gates
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- 1 escenario Gherkin CRUD completo con estado PASS en reporte Serenity
+- Escenario ejecutable de forma aislada (sin datos previos en BD)
+- Código sin comentarios ni variables no semánticas
+- Reporte en `target/site/serenity/`
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Esta constitución prevalece sobre cualquier otra práctica.
+Enmiendas requieren documentación, aprobación y plan de migración.
+Toda PR/revisión debe verificar cumplimiento de los 5 principios.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-03-20 | **Last Amended**: 2026-03-20
