@@ -1,9 +1,9 @@
-defaultTasks 'clean', 'test', 'aggregate'
-
 plugins {
     id 'java'
-    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.0'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.34'
 }
+
+defaultTasks 'clean', 'test', 'aggregate'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -19,7 +19,7 @@ java {
 }
 
 ext {
-    serenityVersion = '4.2.0'
+    serenityVersion = '4.2.34'
     cucumberVersion = '7.18.0'
 }
 
@@ -28,6 +28,7 @@ dependencies {
     testImplementation "net.serenity-bdd:serenity-cucumber:${serenityVersion}"
     testImplementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
     testImplementation "net.serenity-bdd:serenity-rest-assured:${serenityVersion}"
+    testImplementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
     testImplementation "io.cucumber:cucumber-java:${cucumberVersion}"
     testImplementation 'junit:junit:4.13.2'
 }
