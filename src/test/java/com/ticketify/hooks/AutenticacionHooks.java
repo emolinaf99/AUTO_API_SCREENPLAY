@@ -1,6 +1,6 @@
-package com.ticketing.hooks;
+package com.ticketify.hooks;
 
-import com.ticketing.util.Endpoints;
+import com.ticketify.util.Endpoints;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;

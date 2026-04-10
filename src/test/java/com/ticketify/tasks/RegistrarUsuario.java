@@ -1,7 +1,7 @@
-package com.ticketing.tasks;
+package com.ticketify.tasks;
 
-import com.ticketing.util.AuthPayloadBuilder;
-import com.ticketing.util.Endpoints;
+import com.ticketify.util.AuthPayloadBuilder;
+import com.ticketify.util.Endpoints;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;

@@ -1,11 +1,11 @@
-package com.ticketing.stepdefinitions;
+package com.ticketify.stepdefinitions;
 
-import com.ticketing.questions.ElCodigoDeRespuesta;
-import com.ticketing.questions.ElTokenJwt;
-import com.ticketing.tasks.IniciarSesionApi;
-import com.ticketing.tasks.IntentarLoginConPasswordIncorrecto;
-import com.ticketing.tasks.IntentarRegistrarEmailDuplicado;
-import com.ticketing.tasks.RegistrarUsuario;
+import com.ticketify.questions.ElCodigoDeRespuesta;
+import com.ticketify.questions.ElTokenJwt;
+import com.ticketify.tasks.IniciarSesionApi;
+import com.ticketify.tasks.IntentarLoginConPasswordIncorrecto;
+import com.ticketify.tasks.IntentarRegistrarEmailDuplicado;
+import com.ticketify.tasks.RegistrarUsuario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

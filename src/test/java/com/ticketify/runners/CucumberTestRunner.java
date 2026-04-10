@@ -1,4 +1,4 @@
-package com.ticketing.runners;
+package com.ticketify.runners;
 
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         features = "src/test/resources/features",
-        glue = {"com.ticketing.stepdefinitions", "com.ticketing.hooks"},
+        glue = {"com.ticketify.stepdefinitions", "com.ticketify.hooks"},
         plugin = {"pretty"}
 )
 public class CucumberTestRunner {

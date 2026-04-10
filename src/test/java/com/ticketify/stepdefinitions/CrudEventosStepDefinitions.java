@@ -1,4 +1,4 @@
-package com.ticketing.stepdefinitions;
+package com.ticketify.stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

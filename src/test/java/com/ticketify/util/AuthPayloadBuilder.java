@@ -1,4 +1,4 @@
-package com.ticketing.util;
+package com.ticketify.util;
 
 import java.util.HashMap;
 import java.util.Map;
